@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Custom 404 pages with Jigsaw docs starter template">
+        <meta name="description" content="Vivid Features">
 
         <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Custom 404 Page | Laravel Vivid"/>
-        <meta property="og:description" content="Custom 404 pages with Jigsaw docs starter template"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs/old/custom-404-page"/>
+        <meta property="og:title" content="Vivid Features | Laravel Vivid"/>
+        <meta property="og:description" content="Vivid Features"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/features"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Custom 404 Page</title>
+        <title>Laravel Vivid | Vivid Features</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -71,7 +71,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/getting-started"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+            class="lvl0 lvl0-active  nav-menu__item hover:text-blue-500"
         >
             Foundation
         </a>
@@ -108,7 +108,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/features"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Features
         </a>
@@ -242,23 +242,90 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="custom-404-page">Custom 404 Page</h1>
-<p>This starter template includes a custom <strong>404 Not Found</strong> error page, located at <code>/source/404.blade.php</code>. <a href="/404">To preview the 404 page</a>, you can visit <code>/404</code> in your browser.</p>
-<pre><code class="language-html">&lt;!-- source/404.blade.php --&gt;
-@extends('_layouts.master')
+            <h1>Features</h1>
+<p>As the name suggests, Features serve a specific purpose and only one Feature can be executed per request.</p>
+<p>Think of them as the intend of the request. For example a feature may be creating a post, authorizing a user, fetching a resource, etc...</p>
+<p>Each Feature can only call Jobs and Operations and it should never communicate or invoke other Features.</p>
+<p>Keep in mind that Features are Device depended, however you can also have global features that are located inside the <code>/app/Features</code> directory.</p>
+<h1>Generating a Feature</h1>
+<p>In order to generate a Feature using the Vivid Console type the following command:</p>
+<pre><code class="language-sh">./vendor/bin/vivid make:feature &lt;feature&gt; [&lt;device&gt;]</code></pre>
+<p>If you do not specifiy a Device name the feature will be considered a global feature and it will be placed inside the <code>/app/Features</code> directory.
+Otherwise the feature will belong to a Device and it will be placed inside the <code>/app/Devices/&lt;device&gt;/Features</code> directory.</p>
+<h1>Anatomy of the Feature</h1>
+<p>A newly created feature will look like this:</p>
+<pre><code class="language-php">&lt;?php
 
-@section('body')
-&lt;div class="flex flex-col items-center mt-32 text-gray-700"&gt;
-    &lt;h1 class="text-6xl leading-none mb-2"&gt;404&lt;/h1&gt;
-    &lt;h2 class="text-3xl"&gt;Page not found&lt;/h2&gt;
+namespace App\Devices\Example\Features;
 
-    &lt;hr class="block w-full max-w-lg mx-auto my-8 border"&gt;
+use Vivid\Foundation\Feature;
+use Illuminate\Http\Request;
 
-    &lt;p class="text-xl"&gt;Need to update this page? See the &lt;a title="404 Page Documentation" href="/docs/404"&gt; documentation here&lt;/a&gt;.&lt;/p&gt;
-&lt;/div&gt;
-@endsection</code></pre>
-<hr />
-<p>Depending on where your site is hosted, you may need to configure your server to use the custom 404 page. For more details, visit the <a href="https://jigsaw.tighten.co/docs/custom-404-page/">Jigsaw documentation about configuring a custom 404 page.</a></p>        </div>
+class ExampleFeature extends Feature
+{
+    public function handle(Request $request)
+    {
+    }
+}</code></pre>
+<p>All the magic happens inside the <code>handle()</code> method. This is where you will call Jobs and Operations from.</p>
+<h2>Serving a Feature</h2>
+<p>Now that you have created a Feature, how to you use it?</p>
+<p>Each Vivid Controller has access to the <code>Vivid\Foundation\ServesFeaturesTrait</code> which provides the <code>$this-&gt;serve()</code> method.
+This trait dispatches the execution of the Feature and it also registers the Feature class FQN to the <code>Vivid\Foundation\Instance</code> class.</p>
+<p>Here is an example using the Device Controller that dispatches a feature:</p>
+<pre><code class="language-php">&lt;?php
+
+namespace App\Devices\ExampleDevice\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Vivid\Foundation\Http\Controller;
+
+use App\Devices\Feature\ExampleFeature;
+
+class ExampleController extends Controller
+{
+    public function index()
+    {
+        return $this-&gt;serve(ExampleFeature::class); 
+    }
+}</code></pre>
+<h2>Passing Arguments</h2>
+<p>If you want to pass arguments when serving a feature you can do that by passing an associative array as a second argument to the <code>serve()</code> method.</p>
+<p>Here is an example of how to pass arguments (in the context of a controller):</p>
+<pre><code class="language-php">[...]
+
+public function index()
+{
+    return $this-&gt;serve(ExampleFeature::class, [
+        'arg1' =&gt; 'value 1',
+        'arg2' =&gt; 'value 2'
+    ]); 
+}
+
+[...]</code></pre>
+<p>In order to accept these arguments from within our <code>ExampleFeature</code> class, we need to do the following:</p>
+<pre><code class="language-php">&lt;?php
+
+namespace App\Devices\ExampleDevice\Features;
+
+use Vivid\Foundation\Feature;
+use Illuminate\Http\Request;
+
+class RetrievesAllUsersFeature extends Feature
+{
+
+    public function __construct($arg2, $arg1)
+    {
+        // use the arguments
+    }
+
+    public function handle(Request $request)
+    {
+        // handle
+    }
+}
+</code></pre>
+<p>You will notice that the order of the arguments doesn't match. Thats because Vivid doesn't care about the order of the arguments at all.</p>        </div>
     </div>
 </section>
         </main>
