@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Vivid Instance Class">
+        <meta name="description" content="Vivid Devices">
 
         <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Vivid Instance Class | Laravel Vivid"/>
-        <meta property="og:description" content="Vivid Instance Class"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/instance"/>
+        <meta property="og:title" content="Vivid Devices | Laravel Vivid"/>
+        <meta property="og:description" content="Vivid Devices"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/events"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Vivid Instance Class</title>
+        <title>Laravel Vivid | Vivid Devices</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -153,7 +153,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/events"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Events
         </a>
@@ -162,7 +162,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/instance"
-            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+            class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Instance
         </a>
@@ -255,23 +255,61 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1>Instance Class</h1>
-<p>The Vivid Instance class is a simple PHP Object that binds to the Laravel Container wit the form of a singleton.
-It is automatically registered by the <code>Vivid\Foundation\VividServiceProvider</code> class, follows:</p>
-<pre><code class="language-php">public function register()
+            <h1>Events</h1>
+<p>By default, Vivid will broadcast events when Features and Jobs are invoked.</p>
+<p>You can hook on these events like you would in any other Laravel event. The trigger happens inside <code>Vivid\Foundation\ServesFeaturesTrait</code> for the Features and
+inside the <code>Vivid\Foundation\JobDispatcherTrait</code> for the Jobs.</p>
+<p>Classes:</p>
+<h3><code>Vivid\Foundation\Events\FeatureStarted</code></h3>
+<pre><code class="language-php">class FeatureStarted
 {
-    $this-&gt;app-&gt;singleton('Vivid\Foundation\Instance', function ($app) {
-        return new Instance();
-    });
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var array
+     */
+    public $arguments;
+
+    /**
+     * FeatureStarted constructor.
+     *
+     * @param string $name
+     * @param array  $arguments
+     */
+    public function __construct($name, array $arguments = [])
+    {
+        $this-&gt;name = $name;
+        $this-&gt;arguments = $arguments;
+    }
 }</code></pre>
-<p>It's pusprose is to store information regarding the runtime of the application.</p>
-<p>Here is what this class contains:</p>
-<ul>
-<li><strong>The controller FQN</strong></li>
-<li><strong>The feature that is being served</strong></li>
-<li><strong>An array with all the Jobs</strong></li>
-<li><strong>An array with all the Operations</strong></li>
-</ul>        </div>
+<h3><code>Vivid\Foundation\Events\JobStarted</code></h3>
+<pre><code class="language-php">class JobStarted
+{
+    /**
+     * @var string
+     */
+    public $name;
+
+    /**
+     * @var array
+     */
+    public $arguments;
+
+    /**
+     * JobStarted constructor.
+     *
+     * @param string $name
+     * @param array  $arguments
+     */
+    public function __construct($name, array $arguments = [])
+    {
+        $this-&gt;name = $name;
+        $this-&gt;arguments = $arguments;
+    }
+}</code></pre>        </div>
     </div>
 </section>
         </main>

@@ -125,6 +125,15 @@
     </li>
             <li class="pl-4">
             
+        <a href="/docs/foundation/domains"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            Domains
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
         <a href="/docs/foundation/operations"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
@@ -143,7 +152,11 @@
     </li>
             <li class="pl-4">
             
-        <p class="nav-menu__item text-gray-600">________</p>
+        <a href="/docs/foundation/events"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            Events
+        </a>
     
     </li>
             <li class="pl-4">
@@ -262,6 +275,26 @@ Each one of them is responsible for providing an interface with out application.
             /resources
             /routes
             /Tests</code></pre>
+<h3>Routing</h3>
+<p>Each Device gets it's own set our routes. When generating a Device, the routes will be registered automatically by the <code>RouteServiceProvider</code> located at <code>/app/Devices/&lt;device&gt;/Providers/RouteServiceProvider</code>.</p>
+<p>By default, you will have a <code>web.php</code> and an <code>api.php</code> file which you will use accordingly. The routes inside these will be prefixed with <code>/api/&lt;device&gt;/</code> and <code>/web/&lt;device/&gt;</code>.</p>
+<p>Here is an preview of the <code>RouteServiceProvider</code>:</p>
+<pre><code class="language-php">class RouteServiceProvider extends ServiceProvider
+{
+    /**
+     * Read the routes from the "api.php" and "web.php" files of this device
+     *
+     * @param \Illuminate\Routing\Router $router
+     */
+    public function map(Router $router)
+    {
+        $namespace = 'App\Devices\ExampleDevice\Http\Controllers';
+        $pathApi = __DIR__.'/../routes/api.php';
+        $pathWeb = __DIR__.'/../routes/web.php';
+
+        $this-&gt;loadRoutesFiles($router, $namespace, $pathApi, $pathWeb);
+    }
+}</code></pre>
 <h3>Examples</h3>
 <p>Lets consider the following scenario:</p>
 <blockquote>

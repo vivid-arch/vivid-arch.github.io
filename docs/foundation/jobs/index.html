@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Vivid Instance Class">
+        <meta name="description" content="Vivid Jobs">
 
         <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Vivid Instance Class | Laravel Vivid"/>
-        <meta property="og:description" content="Vivid Instance Class"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/instance"/>
+        <meta property="og:title" content="Vivid Jobs | Laravel Vivid"/>
+        <meta property="og:description" content="Vivid Jobs"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/jobs"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Vivid Instance Class</title>
+        <title>Laravel Vivid | Vivid Jobs</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -117,7 +117,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/jobs"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Jobs
         </a>
@@ -162,7 +162,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/instance"
-            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+            class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Instance
         </a>
@@ -255,23 +255,109 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1>Instance Class</h1>
-<p>The Vivid Instance class is a simple PHP Object that binds to the Laravel Container wit the form of a singleton.
-It is automatically registered by the <code>Vivid\Foundation\VividServiceProvider</code> class, follows:</p>
-<pre><code class="language-php">public function register()
+            <h1>Jobs</h1>
+<p>Jobs are where most of the magic happens. They are responsible for doing a certain task they they are reusable througout the application.</p>
+<p>Jobs should only be doing one and only thing. For example, a <code>FetchActiveUsersJob</code> should do what it's name implies. Similarly the Feature should be broken down to
+individual jobs. If you were to have a <code>SavePostFeature</code> you should think what smaller steps need to be taken in order to accomplish that task.</p>
+<p>Unlike Features, Jobs are not Device-spicifc and they reside inside the <code>/app/Domains/&lt;domain&gt;/Jobs</code> directory. One important characteristic of the Jobs is that they are
+completely isolated and they should only ever talk to the core application or other external services. Most importantly, Jobs should never talk to other jobs.</p>
+<h2>Generating a Job</h2>
+<p><strong>Basic use</strong></p>
+<pre><code class="language-sh">./vendor/bin/vivid make:job &lt;job&gt; &lt;domain&gt;</code></pre>
+<h2>Anatomy of the Job</h2>
+<pre><code class="language-php">&lt;?php
+
+namespace App\Domains\ExampleDomain\Jobs;
+
+use Vivid\Foundation\Job;
+
+class ExampleJob extends Job
 {
-    $this-&gt;app-&gt;singleton('Vivid\Foundation\Instance', function ($app) {
-        return new Instance();
-    });
-}</code></pre>
-<p>It's pusprose is to store information regarding the runtime of the application.</p>
-<p>Here is what this class contains:</p>
-<ul>
-<li><strong>The controller FQN</strong></li>
-<li><strong>The feature that is being served</strong></li>
-<li><strong>An array with all the Jobs</strong></li>
-<li><strong>An array with all the Operations</strong></li>
-</ul>        </div>
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+
+    }
+}
+</code></pre>
+<p>By default, the Job will conntain 2 functions, the <code>__construct</code> and the <code>handle</code> function. You will have to use the constructor in order to
+pass parameters to the Job and the handle function to put inside the main Job code.</p>
+<h2>Running Jobs</h2>
+<p>To run a job you have to use the <code>$this-&gt;run()</code> method from within a Feature, which is made available by the <code>Vivid\Foundation\JobDispatcherTrait</code> which, in turn,
+is implemented by the <code>Vivid\Foundation\Feature</code>.</p>
+<p>Hare is an example of that:</p>
+<pre><code class="language-php">&lt;?php
+
+namespace App\Devices\ExampleDevice\Features;
+
+use Vivid\Foundation\Feature;
+use Illuminate\Http\Request;
+
+use App\Domains\ExampleDomain\Jobs\ExampleJob;
+
+class ExampleFeature extends Feature
+{
+    public function handle(Request $request)
+    {
+        $this-&gt;run(ExampleJob::class);
+    }
+}
+</code></pre>
+<h2>Passing Parameters</h2>
+<p>You can pass parameters similar to how you would do that with Features.
+The <code>$this-&gt;run()</code> method will accept and associative array as a second parameter and will inject the values
+to the constructor of the Job.</p>
+<pre><code class="language-php">[...]
+
+public function handle(Request $request)
+{
+    $this-&gt;run(ExampleJob::class, [
+        'param1' =&gt; 'value',
+        'param2' =&gt; 'value'
+    ]);
+}
+
+[...]</code></pre>
+<p>In order to accept these parameters from the Job class you have to do the following:</p>
+<pre><code class="language-php">[...]
+
+class ExampleJob extends Job
+{
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct($param1, $param2)
+    {
+
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+
+    }
+}
+</code></pre>        </div>
     </div>
 </section>
         </main>
