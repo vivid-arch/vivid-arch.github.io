@@ -7,7 +7,7 @@
         <meta name="description" content="Vivid Features">
 
         <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Vivid Features | Laravel Vivid"/>
+        <meta property="og:title" content="Features | Laravel Vivid"/>
         <meta property="og:description" content="Vivid Features"/>
         <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/features"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Vivid Features</title>
+        <title>Laravel Vivid | Features</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -251,6 +251,15 @@
         </a>
     
     </li>
+            <li class="pl-4">
+            
+        <a href="/#"
+            class="lvl0   nav-menu__item hover:text-blue-500"
+        >
+            ROADMAP
+        </a>
+    
+    </li>
     </ul>
         </nav>
 
@@ -333,7 +342,10 @@ class RetrievesAllUsersFeature extends Feature
     }
 }
 </code></pre>
-<p>You will notice that the order of the arguments doesn't match. Thats because Vivid doesn't care about the order of the arguments at all.</p>        </div>
+<p>You will notice that the order of the arguments doesn't match. Thats because Vivid doesn't care about the order of the arguments at all.</p>
+<h2>Examples</h2>
+<p>Following the example of our small ERP that we saw in the Devices we can assume that a feature should exist which hadles the creation an order.</p>
+<p>Thus, we can create a <code>CreateOrderFeature</code> which in turn will call all the necessary Jobs needed to accomplish that task.</p>        </div>
     </div>
 </section>
         </main>

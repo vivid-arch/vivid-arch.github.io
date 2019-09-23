@@ -251,6 +251,15 @@
         </a>
     
     </li>
+            <li class="pl-4">
+            
+        <a href="/#"
+            class="lvl0   nav-menu__item hover:text-blue-500"
+        >
+            ROADMAP
+        </a>
+    
+    </li>
     </ul>
         </nav>
 
@@ -262,19 +271,27 @@
 </blockquote>
 <p>Vivid is a clear and concise way to structure your code. It works with the framework and not against it. It's an extension of Laravel that adds value and does not change the standard conventions. </p>
 <hr />
-<p><img src="/assets/images/intro_arch.png" alt="Vivid Arch" /></p>
+<p><img src="/assets/images/intro-arch.png" alt="Vivid Arch" /></p>
 <hr />
 <p>Vivid began as a fork of Lucid, which was released by VineLabs in 2016, but it took a different approach.
 Like with the original package, the goal is to write efficient, clean code that will never have to become <em>&quot;that legacy part&quot;</em> of the application.</p>
+<p>In essence, your controllers will only call and serve a single Feature, your Features will call multiple Jobs. Your Jobs are reusable, testable
+and sperated in to Domains. Jobs that are usually called together can be grouped in to an Operation.
+Your application may have multiple entry points acting like I/O Devices.</p>
 <h2>Packages</h2>
 <ul>
 <li><a href="https://packagist.org/packages/vivid-arch/laravel-foundation">vivid-arch/laravel-foundation</a></li>
 <li><a href="https://packagist.org/packages/vivid-arch/laravel-console">vivid-arch/laravel-console</a></li>
 <li><a href="https://packagist.org/packages/vivid-arch/laravel-ignition-tab">vivid-arch/laravel-ignition-tab</a></li>
 <li><a href="/docs/dashboard/getting-started">vivid-arch/laravel-dashboard</a></li>
-<li>
-</li>
 </ul>
+<h2>Copyright (MIT License)</h2>
+<p>Copyright 2019, Meletios Flevarakis <a href="mailto:m.flevarakis@gmail.com">m.flevarakis@gmail.com</a></p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>Copyright for portions of project lucid-foundation are held by VineLab, 2016 as part of Lucid Architecture.
+All other copyright for project Vivid Architecture are held by Meletios Flevarakis, 2019.</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 <h3>Differences with Lucid</h3>
 <ul>
 <li>Vivid ditched the scaffold. You can just pull the foundation-laravel and you are ready to go.</li>
