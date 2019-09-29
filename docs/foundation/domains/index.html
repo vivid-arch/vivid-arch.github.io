@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Vivid Features">
+        <meta name="description" content="Vivid Domains">
 
         <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Features | Laravel Vivid"/>
-        <meta property="og:description" content="Vivid Features"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/features"/>
+        <meta property="og:title" content="Domains | Laravel Vivid"/>
+        <meta property="og:description" content="Vivid Domains"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/domains"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Features</title>
+        <title>Laravel Vivid | Domains</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -108,7 +108,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/features"
-            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+            class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Features
         </a>
@@ -126,7 +126,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/domains"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Domains
         </a>
@@ -264,88 +264,8 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1>Features</h1>
-<p>As the name suggests, Features serve a specific purpose and only one Feature can be executed per request.</p>
-<p>Think of them as the intend of the request. For example a feature may be creating a post, authorizing a user, fetching a resource, etc...</p>
-<p>Each Feature can only call Jobs and Operations and it should never communicate or invoke other Features.</p>
-<p>Keep in mind that Features are Device depended, however you can also have global features that are located inside the <code>/app/Features</code> directory.</p>
-<h2>Generating a Feature</h2>
-<p>In order to generate a Feature using the Vivid Console type the following command:</p>
-<pre><code class="language-sh">./vendor/bin/vivid make:feature &lt;feature&gt; [&lt;device&gt;]</code></pre>
-<p>If you do not specifiy a Device name the feature will be considered a global and it will be placed inside the <code>/app/Features</code> directory.
-Otherwise the feature will belong to a Device and it will be placed inside the <code>/app/Devices/&lt;device&gt;/Features</code> directory.</p>
-<h2>Anatomy of the Feature</h2>
-<p>A newly created feature will look like this:</p>
-<pre><code class="language-php">&lt;?php
-
-namespace App\Devices\Example\Features;
-
-use Vivid\Foundation\Feature;
-use Illuminate\Http\Request;
-
-class ExampleFeature extends Feature
-{
-    public function handle(Request $request)
-    {
-    }
-}</code></pre>
-<p>All the magic happens inside the <code>handle()</code> method. This is where you will call Jobs and Operations from.</p>
-<h2>Serving a Feature</h2>
-<p>Now that you have created a Feature, how to you use it?</p>
-<p>Each Vivid Controller has access to the <code>Vivid\Foundation\ServesFeaturesTrait</code> which provides the <code>$this-&gt;serve()</code> method.
-This trait dispatches the execution of the Feature and it also registers the Feature class FQN to the <code>Vivid\Foundation\Instance</code> class.</p>
-<p>Here is an example using the Device Controller that dispatches a feature:</p>
-<pre><code class="language-php">&lt;?php
-
-namespace App\Devices\ExampleDevice\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Vivid\Foundation\Http\Controller;
-
-use App\Devices\Feature\ExampleFeature;
-
-class ExampleController extends Controller
-{
-    public function index()
-    {
-        return $this-&gt;serve(ExampleFeature::class); 
-    }
-}</code></pre>
-<h2>Passing Parameters</h2>
-<p>If you want to pass parameters when serving a feature you can do that by passing an associative array as a second parameter to the <code>serve()</code> method.</p>
-<p>Here is an example of how to pass parameters (in the context of a controller):</p>
-<pre><code class="language-php">[...]
-
-public function index()
-{
-    return $this-&gt;serve(ExampleFeature::class, [
-        'arg1' =&gt; 'value 1',
-        'arg2' =&gt; 'value 2'
-    ]); 
-}
-
-[...]</code></pre>
-<p>In order to accept these parameters from within our <code>ExampleFeature</code> class, we need to do the following:</p>
-<pre><code class="language-php">[...]
-
-class RetrievesAllUsersFeature extends Feature
-{
-
-    public function __construct($arg2, $arg1)
-    {
-        // use the arguments
-    }
-
-    public function handle(Request $request)
-    {
-        // handle
-    }
-}
-</code></pre>
-<p>You will notice that the order of the arguments doesn't match. Thats because Vivid doesn't care about the order of the arguments at all.</p>
-<h2>Examples</h2>
-<p>Following the example of our small ERP that we saw in the Devices we can assume that a feature should exist which hadles the creation an order.</p>
-<p>Thus, we can create a <code>CreateOrderFeature</code> which in turn will call all the necessary Jobs needed to accomplish that task.</p>        </div>
+            <h1>Domains</h1>
+<p><em>nothing to see here... still writing the docs...</em></p>        </div>
     </div>
 </section>
         </main>

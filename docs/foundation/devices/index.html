@@ -266,7 +266,7 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Devices</h1>
 <p>Think of Devies as an I/O device. The content of Devices is similar to the default Laravel structure that we are used to seeing.
-Each one of them is responsible for providing an interface with out application. They have their own set of controllers, routes and features.</p>
+Each one of them is responsible for providing an interface with our application. They have their own set of Controllers, Routes and Features.</p>
 <p>Each Device <strong>must</strong> be independed for the others and it should be able to function on its own without the existance of the other devices.</p>
 <p>It is acceptable for devices to use the classes located outside of the <code>/Devices</code>.</p>
 <h3>Generating a Device</h3>
@@ -311,7 +311,7 @@ Each one of them is responsible for providing an interface with out application.
 </blockquote>
 <p>Using the Vivid Architecture you should create a Device for each endpoint of interaction with your app.
 More specifically, you should make a Device for the <strong>Web</strong>, the <strong>API</strong> and for each POS that demands to communication with your app. It's easy to assume that the vast
-majority of apps will only ever need a Web and an API device and that actually correct, however the example with the ERP illustrates how devices can help you even further
+majority of apps will only ever need a Web and an API device and thats actually correct, however the example with the ERP illustrates how devices can help you even further
 when it comes to seperating concerns.</p>
 <p>Each POS vendor migth have different ways of fetching of sending data to external services. The I/O operations should be distinct and isolated.</p>
 <p>At all times you should be able to just delete a device folder and the app should be functional. (without the endpoints which were contained inside the now deleted device, of curse)</p>        </div>
