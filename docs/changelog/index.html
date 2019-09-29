@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Building a navigation menu for your site">
+        <meta name="description" content="Vivid Changelog">
 
         <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Navigation | Laravel Vivid"/>
-        <meta property="og:description" content="Building a navigation menu for your site"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs/old/navigation"/>
+        <meta property="og:title" content="Changelog | Laravel Vivid"/>
+        <meta property="og:description" content="Vivid Changelog"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/changelog"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Navigation</title>
+        <title>Laravel Vivid | Changelog</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -26,7 +26,7 @@
                     <!-- Insert analytics code here -->
         
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/build/css/main.css?id=19fe5825afe41fda767d">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=c05d875e7bcb5fa52844">
 
             </head>
 
@@ -223,7 +223,7 @@
     </li>
             <li class="pl-4">
             
-        <a href="/#"
+        <a href="/docs/ignition/getting-started"
             class="lvl0   nav-menu__item hover:text-blue-500"
         >
             Ignition Tab
@@ -233,7 +233,7 @@
         <ul class="my-0">
             <li class="pl-4">
             
-        <a href="/#"
+        <a href="/docs/ignition/installation"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Installation
@@ -244,8 +244,8 @@
     </li>
             <li class="pl-4">
             
-        <a href="/#"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+        <a href="/docs/changelog"
+            class="lvl0  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             CHANGELOG
         </a>
@@ -253,7 +253,7 @@
     </li>
             <li class="pl-4">
             
-        <a href="/#"
+        <a href="/docs/roadmap"
             class="lvl0   nav-menu__item hover:text-blue-500"
         >
             ROADMAP
@@ -264,29 +264,8 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1 id="navigation">Navigation</h1>
-<p>The navigation menu in the left-hand sidebar is defined using an array in <code>navigation.php</code>. Nested pages can be added by using the <code>children</code> associative array.</p>
-<pre><code class="language-php">&lt;?php
-// navigation.php
-
-return [
-    'Getting Started' =&gt; [
-        'url' =&gt; 'docs/getting-started',
-        'children' =&gt; [
-            'Customizing Your Site' =&gt; 'docs/customizing-your-site',
-            'Navigation' =&gt; 'docs/navigation',
-            'Algolia DocSearch' =&gt; 'docs/algolia-docsearch',
-            'Custom 404 Page' =&gt; 'docs/custom-404-page',
-        ],
-    ],
-    'Jigsaw Docs' =&gt; 'https://jigsaw.tighten.co/docs/installation',
-];
-
-// config.php
-'navigation' =&gt; require_once('navigation.php'),
-
-// blade files
-$page-&gt;navigation</code></pre>        </div>
+            <h1>Changelog</h1>
+<p><em>nothing to see here... still writing the docs...</em></p>        </div>
     </div>
 </section>
         </main>
