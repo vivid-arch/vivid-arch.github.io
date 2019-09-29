@@ -277,7 +277,22 @@ or to a specific Device (<code>app/Devices/&lt;device&gt;/Operations</code>) and
 <h2>Generating an Operation</h2>
 <p><strong>Basic use</strong></p>
 <pre><code class="language-sh">./vendor/bin/vivid make:operation &lt;operation&gt; [&lt;device&gt;]</code></pre>
-<h2>Anatomy of the Operation</h2>        </div>
+<h2>Anatomy of the Operation</h2>
+<p>The Operation look like a Feature. It has a <code>handle()</code> method and it has the right to call Jobs.</p>
+<pre><code class="language-php">&lt;?php
+
+namespace App\Devices\ExampleDevice\Operations;
+
+use Vivid\Foundation\Operation;
+use Illuminate\Http\Request;
+
+class ExampleOperation extends Operation
+{
+    public function handle(Request $request)
+    {
+
+    }
+}</code></pre>        </div>
     </div>
 </section>
         </main>
