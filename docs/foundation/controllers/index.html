@@ -266,7 +266,7 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Controllers</h1>
 <p>When using Vivid, each Controller that is going to serve a Feature needs to extend the <code>Vivid\Foundation\Http\Controller</code> base class.
-This base class has two main functions.</p>
+This base class has two main functions:</p>
 <p>The first one is providing access to the <code>ServesFeaturesTrait</code> which in turn allows you to use the <code>$this-&gt;serve()</code> method.
 This is mandatory in order to serve Vivid Features.</p>
 <p>Secondly, the constructor of the Vivid Controller is responsible for adding the Controller class FQN to the <code>Vivid\Foundation\Instance</code> for use in debugging.</p>
@@ -281,7 +281,7 @@ if it implements a custom constructor.</p>
 <p>If for whatever reason you forgo doing that, the <code>Vivid\Foundation\Instance::$controller</code> variable will stay <code>null</code> and consequently <code>Vivid\Foundation\Instance::getController()</code>
 will return <code>null</code>.</p>
 <h2>Generating Controllers</h2>
-<p>In order to generate a Controller using the Vivid Console type the following command:</p>
+<p>In order to generate a Controller using the Vivid Console, type the following command:</p>
 <pre><code class="language-sh">./vendor/bin/vivid make:controller &lt;controller&gt; &lt;device&gt;</code></pre>
 <p>By default this command will generate a very basic controller class that looks like this:</p>
 <pre><code class="language-php">&lt;?php
@@ -297,7 +297,7 @@ class ExampleController extends Controller
 }</code></pre>
 <p>If you want to save time and generate a resource controller you can do it by using the <code>--resource</code> option. This will generate a controller that implements
 the following functions: <code>index</code>, <code>create</code>, <code>store</code>, <code>show</code>, <code>edit</code>, <code>update</code>, <code>destroy</code>.</p>
-<p><strong>Because a controller only serves ONE feature and should do nothing else, you have controllers with a single line of code inside.</strong></p>
+<p><strong>Because a controller action only serves ONE feature and should do nothing else, you have controllers with a single line of code inside.</strong></p>
 <p><em>Call that thin controllers!</em></p>        </div>
     </div>
 </section>

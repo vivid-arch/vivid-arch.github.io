@@ -265,7 +265,10 @@
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Views</h1>
-<p><em>nothing to see here... still writing the docs...</em></p>        </div>
+<p>Following the isolation philosophy of the Devices with their own set of Routes, you can have views that belong to a specific Device.</p>
+<p>Each view is namespaced, and consequently has to be called using the name of the device as it's namespace.</p>
+<p>Example:</p>
+<pre><code class="language-php">view('devicename::user.index')</code></pre>        </div>
     </div>
 </section>
         </main>

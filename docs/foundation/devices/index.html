@@ -268,10 +268,24 @@
 <p>Think of Devies as an I/O device. The content of Devices is similar to the default Laravel structure that we are used to seeing.
 Each one of them is responsible for providing an interface with our application. They have their own set of Controllers, Routes and Features.</p>
 <p>Each Device <strong>must</strong> be independed for the others and it should be able to function on its own without the existance of the other devices.</p>
-<p>It is acceptable for devices to use the classes located outside of the <code>/Devices</code>.</p>
+<p>It is acceptable for devices to use the classes located outside of the <code>/Devices</code> directory.</p>
 <h3>Generating a Device</h3>
 <p>In order to generate a Device using the Vivid Console type the following command:</p>
 <pre><code class="language-sh">./vendor/bin/vivid make:device ExampleDevice</code></pre>
+<h3>Registering a Device</h3>
+<p>Be default, Devices do not get registered automatically. Once generating one you will have to add the Service Provider namespace inside the <code>devices</code> array located at <code>/config/vivid.php</code>.</p>
+<p>You can also toggle which devices will be loaded by the application by adding <code>true</code> or <code>false</code> to each Device. For example:</p>
+<pre><code class="language-php">//Will be registred:
+'devices' =&gt; [
+    'App\Devices\Example1\Providers\ExampleServiceProvider'
+    'App\Devices\Example2\Providers\ExampleServiceProvider' =&gt; true
+]
+
+//Will not be registred:
+'devices' =&gt; [
+    'App\Devices\Example1\Providers\ExampleServiceProvider' =&gt; false
+]</code></pre>
+<p>TIP: You can also use env variables to controll how and when the devices will be loaded. For example you can disable certain devices on certain enviroments!</p>
 <h3>Directory Structure</h3>
 <pre><code>/app
     /Devices
@@ -286,7 +300,7 @@ Each one of them is responsible for providing an interface with our application.
             /Tests</code></pre>
 <h3>Routing</h3>
 <p>Each Device gets it's own set our routes. When generating a Device, the routes will be registered automatically by the <code>RouteServiceProvider</code> located at <code>/app/Devices/&lt;device&gt;/Providers/RouteServiceProvider</code>.</p>
-<p>By default, you will have a <code>web.php</code> and an <code>api.php</code> file which you will use accordingly. The routes inside these will be prefixed with <code>/api/&lt;device&gt;/</code> and <code>/web/&lt;device/&gt;</code>.</p>
+<p>By default, you will have a <code>web.php</code> and an <code>api.php</code> file which you will use accordingly. The routes inside these will be prefixed with <code>/api/&lt;device&gt;/</code> and <code>/web/&lt;device/&gt;</code> respectively.</p>
 <p>Here is a preview of the <code>RouteServiceProvider</code>:</p>
 <pre><code class="language-php">class RouteServiceProvider extends ServiceProvider
 {

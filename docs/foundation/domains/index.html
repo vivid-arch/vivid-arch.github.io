@@ -266,14 +266,14 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Domains</h1>
 <p>Domains are nothing more than way to logically group Jobs together beased on which models or entities they are dealing with.</p>
-<p>For example, the Jobs <code>GetActiveUserJob</code>, <code>CreateUserJob</code>, <code>DestroyuserJob</code> belong to the <code>User</code> domain because they are dealing with the <code>User</code> entity.</p>
+<p>For example, the Jobs <code>GetActiveUserJob</code>, <code>CreateUserJob</code>, <code>DestroyUserJob</code> belong to the <code>User</code> domain because they are dealing with the <code>User</code> entity.</p>
 <p>Furthermore, Domains will allow you to detect when your Jobs are doing too much work. If you cant decide in which Domain your Job belong to,
-then most likely you are dealing with multiple Domains which in turn shows that your Job is doing too much work and it should be broken to smaller ports.</p>
-<p>At that point you may have to create an Operation and call the Jobs together if that makes sense for you use case.</p>
+then most likely you are dealing with multiple Domains which in turn shows that your Job is doing too much work and it should be broken in to smaller parts.</p>
+<p>At that point you may have to create an Operation and call the Jobs together if that makes sense for your use case.</p>
 <h2>Creating a Domain</h2>
 <p>Domains can only be crated when a <code>Job</code> is being created by specifing the <code>&lt;domain&gt;</code> argument.</p>
 <pre><code class="language-sh">./vendor/bin/vivid make:job &lt;job&gt; &lt;domain&gt;</code></pre>
-<p>You can find the Domains at <code>/app/Domains</code>.</p>        </div>
+<p>You can find the Domains at the <code>/app/Domains</code> directory.</p>        </div>
     </div>
 </section>
         </main>

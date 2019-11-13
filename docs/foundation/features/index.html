@@ -273,7 +273,7 @@
 <p>In order to generate a Feature using the Vivid Console type the following command:</p>
 <pre><code class="language-sh">./vendor/bin/vivid make:feature &lt;feature&gt; [&lt;device&gt;]</code></pre>
 <p>If you do not specifiy a Device name the feature will be considered a global and it will be placed inside the <code>/app/Features</code> directory.
-Otherwise the feature will belong to a Device and it will be placed inside the <code>/app/Devices/&lt;device&gt;/Features</code> directory.</p>
+Otherwise the feature will belong to a Device and it will be placed inside the <code>/app/Devices/&lt;device&gt;/Features</code> directory respectively.</p>
 <h2>Anatomy of the Feature</h2>
 <p>A newly created feature will look like this:</p>
 <pre><code class="language-php">&lt;?php
@@ -312,7 +312,7 @@ class ExampleController extends Controller
     }
 }</code></pre>
 <h2>Passing Parameters</h2>
-<p>If you want to pass parameters when serving a feature you can do that by passing an associative array as a second parameter to the <code>serve()</code> method.</p>
+<p>If you want to pass parameters when serving a feature you can do it by passing an associative array as a second parameter to the <code>serve()</code> method.</p>
 <p>Here is an example of how to pass parameters (in the context of a controller):</p>
 <pre><code class="language-php">[...]
 
@@ -333,7 +333,7 @@ class RetrievesAllUsersFeature extends Feature
 
     public function __construct($arg2, $arg1)
     {
-        // use the arguments
+        // set the arguments as class properties
     }
 
     public function handle(Request $request)
@@ -342,10 +342,10 @@ class RetrievesAllUsersFeature extends Feature
     }
 }
 </code></pre>
-<p>You will notice that the order of the arguments doesn't match. Thats because Vivid doesn't care about the order of the arguments at all.</p>
+<p>You will notice that the order of the arguments doesn't match they order that we passed them in. Thats because Vivid doesn't care about the order of the arguments at all.</p>
 <h2>Examples</h2>
 <p>Following the example of our small ERP that we saw in the Devices we can assume that a feature should exist which hadles the creation an order.</p>
-<p>Thus, we can create a <code>CreateOrderFeature</code> which in turn will call all the necessary Jobs needed to accomplish that task.</p>        </div>
+<p>Thus, we can create a <code>CreateOrderFeature</code> which, in turn, will call all the necessary Jobs needed to accomplish that task.</p>        </div>
     </div>
 </section>
         </main>

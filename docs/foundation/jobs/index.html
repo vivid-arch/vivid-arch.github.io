@@ -265,7 +265,7 @@
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Jobs</h1>
-<p>Jobs are where most of the magic happens. They are responsible for doing a certain task they they are reusable througout the application.</p>
+<p>Jobs are where most of the magic happens. They are responsible for doing a certain task and they are reusable througout the application.</p>
 <p>Jobs should only be doing one and only thing. For example, a <code>FetchActiveUsersJob</code> should do what it's name implies. Similarly the Feature should be broken down to
 individual jobs. If you were to have a <code>SavePostFeature</code> you should think what smaller steps need to be taken in order to accomplish that task.</p>
 <p>Unlike Features, Jobs are not Device-spicifc and they reside inside the <code>/app/Domains/&lt;domain&gt;/Jobs</code> directory. One important characteristic of the Jobs is that they are
@@ -304,11 +304,11 @@ class ExampleJob extends Job
 }
 </code></pre>
 <p>By default, the Job will conntain 2 functions, the <code>__construct</code> and the <code>handle</code> function. You will have to use the constructor in order to
-pass parameters to the Job and the handle function to put inside the main Job code.</p>
+accept parameters to the Job, and the handle function to put inside the main Job logic.</p>
 <h2>Running Jobs</h2>
 <p>To run a job you have to use the <code>$this-&gt;run()</code> method from within a Feature, which is made available by the <code>Vivid\Foundation\JobDispatcherTrait</code> which, in turn,
 is implemented by the <code>Vivid\Foundation\Feature</code>.</p>
-<p>Hare is an example of that:</p>
+<p>Hare is an example:</p>
 <pre><code class="language-php">&lt;?php
 
 namespace App\Devices\ExampleDevice\Features;
@@ -327,8 +327,8 @@ class ExampleFeature extends Feature
 }
 </code></pre>
 <h2>Passing Parameters</h2>
-<p>You can pass parameters similar to how you would do that with Features.
-The <code>$this-&gt;run()</code> method will accept and associative array as a second parameter and will inject the values
+<p>You can pass parameters similar to how you would do it with Features.</p>
+<p>The <code>$this-&gt;run()</code> method will accept and associative array as a second parameter and will inject the values
 to the constructor of the Job.</p>
 <pre><code class="language-php">[...]
 
