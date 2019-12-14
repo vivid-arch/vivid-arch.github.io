@@ -268,6 +268,7 @@
 <p>By default, Vivid will broadcast events when Features and Jobs are invoked.</p>
 <p>You can hook on these events like you would in any other Laravel event. The trigger happens inside <code>Vivid\Foundation\ServesFeaturesTrait</code> for the Features, and
 inside the <code>Vivid\Foundation\JobDispatcherTrait</code> for the Jobs.</p>
+<p>Please keep in mind that in most cases, relying on events to add logic to your application can be considered an anti-pattern. Be cautious when using them.</p>
 <p>Classes:</p>
 <h3><code>Vivid\Foundation\Events\FeatureStarted</code></h3>
 <pre><code class="language-php">class FeatureStarted

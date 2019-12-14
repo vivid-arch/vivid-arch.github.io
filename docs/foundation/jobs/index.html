@@ -308,7 +308,7 @@ accept parameters to the Job, and the handle function to put inside the main Job
 <h2>Running Jobs</h2>
 <p>To run a job you have to use the <code>$this-&gt;run()</code> method from within a Feature, which is made available by the <code>Vivid\Foundation\JobDispatcherTrait</code> which, in turn,
 is implemented by the <code>Vivid\Foundation\Feature</code>.</p>
-<p>Hare is an example:</p>
+<p>Here is an example:</p>
 <pre><code class="language-php">&lt;?php
 
 namespace App\Devices\ExampleDevice\Features;
@@ -328,7 +328,7 @@ class ExampleFeature extends Feature
 </code></pre>
 <h2>Passing Parameters</h2>
 <p>You can pass parameters similar to how you would do it with Features.</p>
-<p>The <code>$this-&gt;run()</code> method will accept and associative array as a second parameter and will inject the values
+<p>The <code>$this-&gt;run()</code> method will accept an associative array as a second parameter and will inject the values
 to the constructor of the Job.</p>
 <pre><code class="language-php">[...]
 
@@ -367,7 +367,7 @@ class ExampleJob extends Job
     }
 }
 </code></pre>
-<p>Please note that the order of the parameters does't matter here either. The key of the associative array however has to match the name of the parameter.</p>        </div>
+<p>Please note that the order of the parameters does not matter here either. The key of the associative array however has to match the name of the parameter.</p>        </div>
     </div>
 </section>
         </main>
