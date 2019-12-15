@@ -266,28 +266,25 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Operations</h1>
 <p>Some times, certain jobs almost always need to run together. If, for example, you need to run an external api call before creating a resource,
-then that would force you to run 2 jobs every single time that you would want to create that resource.</p>
-<p>If you had to follow this course of actions multiple times, that would make your code WET (Write Everything Twice).
-Keed also in mind that you should <strong>NEVER</strong> call a Job from within an other Job.</p>
-<p>Operations are used in order to DRY (Dont Repeat Yourself) your code. </p>
+then that would force you to run 2 jobs every single time that you had to create that resource.</p>
+<p>If you were to follow this course of actions multiple times, it would make your code WET (Write Everything Twice).
+Keep also in mind that you should <strong>NEVER</strong> call a Job from within an other Job.</p>
+<p>Operations are used in order to DRY (Dont Repeat Yourself) up your code. </p>
 <p>Essentialy, Operations are a group of Jobs. Instead of calling the same Jobs
-over and over again, you can Group them together and then run that Operation instead. </p>
-<p>Even if Operations seem like a super Job, they can either belong to the root application (<code>app/Operations</code>),
-or to a specific Device (<code>app/Devices/&lt;device&gt;/Operations</code>) and <strong>NOT</strong> to a Domain because they can invoke Jobs from multiple Domains.</p>
+over and over again, you can group them together and then run that Operation instead. </p>
 <h2>Generating an Operation</h2>
-<pre><code class="language-sh">./vendor/bin/vivid make:operation &lt;operation&gt; [&lt;device&gt;]</code></pre>
+<pre><code class="language-sh">./vendor/bin/vivid make:operation &lt;operation&gt;</code></pre>
 <h2>Anatomy of the Operation</h2>
 <p>The Operation look like a Feature. It has a <code>handle()</code> method and it has the right to call Jobs.</p>
 <pre><code class="language-php">&lt;?php
 
-namespace App\Devices\ExampleDevice\Operations;
+namespace App\Operations;
 
 use Vivid\Foundation\Operation;
-use Illuminate\Http\Request;
 
 class ExampleOperation extends Operation
 {
-    public function handle(Request $request)
+    public function handle()
     {
 
     }
