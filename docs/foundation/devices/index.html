@@ -6,18 +6,18 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="Vivid Devices">
 
-        <meta property="og:site_name" content="Laravel Vivid"/>
-        <meta property="og:title" content="Devices | Laravel Vivid"/>
+        <meta property="og:site_name" content="Laravel Vivid Architecture"/>
+        <meta property="og:title" content="Devices | Laravel Vivid Architecture"/>
         <meta property="og:description" content="Vivid Devices"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/devices"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs\foundation/devices"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
-        <meta name="twitter:image:alt" content="Laravel Vivid">
+        <meta name="twitter:image:alt" content="Laravel Vivid Architecture">
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid | Devices</title>
+        <title>Laravel Vivid Architecture | Devices</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -26,7 +26,7 @@
                     <!-- Insert analytics code here -->
         
         <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,300i,400,400i,700,700i,800,800i" rel="stylesheet">
-        <link rel="stylesheet" href="/assets/build/css/main.css?id=c05d875e7bcb5fa52844">
+        <link rel="stylesheet" href="/assets/build/css/main.css?id=3a7955c2061c89fe3394">
 
             </head>
 
@@ -34,10 +34,10 @@
         <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
             <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
                 <div class="flex items-center">
-                    <a href="/" title="Laravel Vivid home" class="inline-flex items-center">
-                        <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="Laravel Vivid logo" />
+                    <a href="/" title="Laravel Vivid Architecture home" class="inline-flex items-center">
+                        <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="Laravel Vivid Architecture logo" />
 
-                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Laravel Vivid</h1>
+                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Laravel Vivid Architecture</h1>
                     </a>
                 </div>
 
@@ -71,7 +71,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/getting-started"
-            class="lvl0 lvl0-active  nav-menu__item hover:text-blue-500"
+            class="lvl0   nav-menu__item hover:text-blue-500"
         >
             Foundation
         </a>
@@ -90,7 +90,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/devices"
-            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
+            class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Devices
         </a>
@@ -138,6 +138,15 @@
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Operations
+        </a>
+    
+    </li>
+            <li class="pl-4">
+            
+        <a href="/docs/foundation/resources"
+            class="lvl1   nav-menu__item hover:text-blue-500"
+        >
+            Resources
         </a>
     
     </li>
@@ -265,28 +274,45 @@
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Devices</h1>
-<p>Think of Devices as an I/O device. The content of Devices is similar to the default Laravel structure that we are used to seeing.
+
+<p>Think of a Device as a generic I/O device. It is responsible of either inputting data or outputting data for a given system.</p>
+
+<p>The structure of the Devices is similar to the default Laravel structure that we are used to seeing.
 Each one of them is responsible for providing an interface with our application. They have their own set of Controllers, Routes and Features.</p>
-<p>Each Device <strong>must</strong> be independed for the others and it should be able to function on its own without the existance of the other devices.</p>
-<p>It is acceptable for devices to use the classes located outside of the <code>/Devices</code> directory.</p>
+
+<p>Each Device <strong>must</strong> be independent for the others and it should be able to function on its own without the existence of the other devices.</p>
+
+<p>It is of curse acceptable for Devices to use any component from our application that is located outside of the <code>/Devices</code> directory.</p>
+
 <h3>Generating a Device</h3>
+
 <p>In order to generate a Device using the Vivid Console type the following command:</p>
-<pre><code class="language-sh">./vendor/bin/vivid make:device ExampleDevice</code></pre>
+
+<pre><code class="language-sh">./vendor/bin/vivid make:device ExampleDevice
+</code></pre>
+
 <h3>Registering a Device</h3>
-<p>Be default, Devices do not get registered automatically. Once generating one you will have to add the Service Provider namespace inside the <code>devices</code> array located at <code>/config/vivid.php</code>.</p>
+
+<p>Be default, Devices do not get registered automatically. Once generating one you will have to add the Service Provider namespace inside the <code>devices</code> array located in <code>/config/vivid.php</code>.</p>
+
 <p>You can also toggle which devices will be loaded by the application by adding <code>true</code> or <code>false</code> to each Device. For example:</p>
-<pre><code class="language-php">//Will be registred:
+
+<pre><code class="language-php">//Will be registered:
 'devices' =&gt; [
-    'App\Devices\Example1\Providers\ExampleServiceProvider'
+    'App\Devices\Example1\Providers\ExampleServiceProvider',
     'App\Devices\Example2\Providers\ExampleServiceProvider' =&gt; true
 ]
 
-//Will not be registred:
+//Will not be registered:
 'devices' =&gt; [
     'App\Devices\Example1\Providers\ExampleServiceProvider' =&gt; false
-]</code></pre>
-<p>TIP: You can also use env variables to controll how and when the devices will be loaded. For example you can disable certain devices on certain enviroments!</p>
+]
+</code></pre>
+
+<p>TIP: You can also use environment variables to control when the devices will be loaded. For example you can disable certain devices on production!</p>
+
 <h3>Directory Structure</h3>
+
 <pre><code>/app
     /Devices
         /ExampleDevice
@@ -295,13 +321,18 @@ Each one of them is responsible for providing an interface with our application.
             /Features
             /Http
             /Providers
-            /resources
             /routes
-            /Tests</code></pre>
+            /Tests
+</code></pre>
+
 <h3>Routing</h3>
-<p>Each Device gets it's own set our routes. When generating a Device, the routes will be registered automatically by the <code>RouteServiceProvider</code> located at <code>/app/Devices/&lt;device&gt;/Providers/RouteServiceProvider</code>.</p>
+
+<p>Each Device gets it's own set our routes. When generating a Device, the routes will be registered automatically by the <code>RouteServiceProvider</code> located at <code>/app/Devices/&lt;device name&gt;/Providers/RouteServiceProvider</code>.</p>
+
 <p>By default, you will have a <code>web.php</code> and an <code>api.php</code> file which you will use accordingly. The routes inside these will be prefixed with <code>/api/&lt;device&gt;/</code> and <code>/web/&lt;device&gt;/</code> respectively.</p>
+
 <p>Here is a preview of the <code>RouteServiceProvider</code>:</p>
+
 <pre><code class="language-php">class RouteServiceProvider extends ServiceProvider
 {
     /**
@@ -317,23 +348,52 @@ Each one of them is responsible for providing an interface with our application.
 
         $this-&gt;loadRoutesFiles($router, $namespace, $pathApi, $pathWeb);
     }
-}</code></pre>
-<h3>Examples</h3>
+}
+</code></pre>
+
+<h3>Example of using Devices</h3>
+
 <p>Lets consider the following scenario:</p>
+
 <blockquote>
-<p>You are building a small ERP which needs to have an API for exposing the data and interacting with the app, a Web interface and an intergration with few POS systems.</p>
+  <p>You are building a SaaS app which has the following features: a homepage with all the marketing material, 
+  a blog to keep your clients updates, a client area which is where your clients are doing all the work, 
+  and an admin panel which you will use to manage the website.</p>
 </blockquote>
-<p>Using the Vivid Architecture you should create a Device for each endpoint of interaction with your app.
-More specifically, you should make a Device for the <strong>Web</strong>, the <strong>API</strong> and for the POS that demands to communicate with your app.
-It's easy to assume that smaller apps will only ever need a Web and an API device and that's actually correct, however the example with the ERP illustrates how devices can help you
-when it comes to organizing the IO endpoints of your application.</p>
-<p>The POS will have different ways of fetching or sending data to external services. These I/O operations should be distinct and isolated.</p>
-<p>At all times you should be able to just delete a device folder and the app should be functional. (without the endpoints which were contained inside the now deleted device)</p>        </div>
+
+<p>All these segments need to be separated in to smaller chunks. In most cases, it will be very easy to distinguish which these parts are
+simply by taking a look at your application's different business segments.</p>
+
+<p>In our case, we can decide to split the application in to the following segments:</p>
+
+<ul>
+<li>Homepage</li>
+<li>Blog</li>
+<li>Client Area</li>
+<li>Admin Area</li>
+</ul>
+
+<p>These segments can be easily converted to different devices and that would be a correct thing to do, but in most cases we need to look
+deeper to see if we end up creating super-devices which are still containing too much code which could be broken ever further.</p>
+
+<p>To give a clear illustration of what we mean by that, lets assume the the client are has a support portal. Indeed, it is contained 
+inside the client area but doesn't it look like a business segment of it's own? Well, yes, and we can think of it as an independent entity.</p>
+
+<p>By closely examining our application, or what we need to build, we can identify it's different business segments and use them to create
+our set of devices that we are going to use.</p>
+
+<p>Using what we have now in this example, we find the following list of devices: <strong>Homepage</strong>, <strong>Blog</strong>, <strong>Admin Area</strong>, <strong>Client Area</strong>, <strong>Support Portal</strong></p>
+
+<p>So, lets recap! 
+We found the logical areas that we can use to derive the devices that we are going to need in order to build the application.</p>
+
+<p>The next step if to generate these devices and we will start implementing them as we go along.</p>
+        </div>
     </div>
 </section>
         </main>
 
-        <script src="/assets/build/js/main.js?id=5dd822863934b75738db"></script>
+        <script src="/assets/build/js/main.js?id=25e9d4a401264f358321"></script>
 
         <script>
     const navMenu = {
@@ -347,10 +407,20 @@ when it comes to organizing the IO endpoints of your application.</p>
     }
 </script>
 
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-44791239-17"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'UA-44791239-17');
+        </script>
+
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center">
                 <li class="md:mr-2">
-                    &copy; <a href="#" title="Tighten website">Vivid</a> 2019.
+                    &copy; <a href="#" title="Tighten website">Vivid</a> 2020.
                 </li>
 
                 <li>

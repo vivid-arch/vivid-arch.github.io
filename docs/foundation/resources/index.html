@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="All the commands contained inside the Vivid Console">
+        <meta name="description" content="Vivid Resources">
 
         <meta property="og:site_name" content="Laravel Vivid Architecture"/>
-        <meta property="og:title" content="Console Commands | Laravel Vivid Architecture"/>
-        <meta property="og:description" content="All the commands contained inside the Vivid Console"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs\console/commands"/>
+        <meta property="og:title" content="Resources | Laravel Vivid Architecture"/>
+        <meta property="og:description" content="Vivid Resources"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs\foundation/resources"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid Architecture | Console Commands</title>
+        <title>Laravel Vivid Architecture | Resources</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -273,36 +273,22 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1>Commands</h1>
+            <h1>Resources</h1>
 
-<pre><code class="language-text">Vivid Console 0.1.0
+<p>Vivid will also group the resources in to their respective devices. If your application uses Blade you can use the resources directory
+in order to place the assets inside.</p>
 
-Usage:
-  command [options] [arguments]
+<p><strong>Directory structure</strong></p>
 
-Options:
-  -h, --help            Display this help message
-  -q, --quiet           Do not output any message
-  -V, --version         Display this application version
-      --ansi            Force ANSI output
-      --no-ansi         Disable ANSI output
-  -n, --no-interaction  Do not ask any interactive question
-  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
-
-Available commands:
-  help                        Displays help for a command
-  list                        Lists commands
- list
-  list:devices                List the devices in this project.
-  list:features               List the features.
- make
-  make:controller             Create a new resource Controller class in a device
-  make:device                 Create a new Device
-  make:feature                Create a new Feature in a device
-  make:job {--Q|queue}        Create a new Job in a domain
-  make:operation {--Q|queue}  Create a new Operation
-  make:request                Create a Request in a specific device.
+<pre><code>/resources
+    /&lt;device name&gt;
+        /js
+        /lang
+        /sass
+        /views
 </code></pre>
+
+<p>If you are taking an API-only approach, you can delete this directory.</p>
         </div>
     </div>
 </section>
