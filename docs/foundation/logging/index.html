@@ -4,12 +4,12 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <meta name="description" content="Vivid Ignition Tab">
+        <meta name="description" content="Vivid Logging">
 
         <meta property="og:site_name" content="Laravel Vivid Architecture"/>
-        <meta property="og:title" content="Getting Started | Laravel Vivid Architecture"/>
-        <meta property="og:description" content="Vivid Ignition Tab"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs\ignition/getting-started"/>
+        <meta property="og:title" content="Logging | Laravel Vivid Architecture"/>
+        <meta property="og:description" content="Vivid Logging"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs\foundation/logging"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
@@ -17,7 +17,7 @@
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid Architecture | Getting Started</title>
+        <title>Laravel Vivid Architecture | Logging</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -282,9 +282,28 @@
         </nav>
 
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
-            <h1>Vivid Ignition Tab</h1>
+            <h1>Logging</h1>
 
-<p><em>nothing to see here... still writing the docs...</em></p>
+<p>Vivid Jobs can write to logs by using the <code>$this-log()</code> method.</p>
+
+<p>Under the hood Vivid uses the <code>Log</code> facade and prepends the output with the Job FQN
+but there are future plans to make the logging more powerful by allowing developers to
+use different logging channels.</p>
+
+<h2>Using the logger</h2>
+
+<p>From within a job you can use the following methods:</p>
+
+<ul>
+<li><code>$this-&gt;log()-&gt;debug(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;info(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;notice(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;warning(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;error(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;critical(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;alert(string $message)</code></li>
+<li><code>$this-&gt;log()-&gt;emergency(string $message)</code></li>
+</ul>
         </div>
     </div>
 </section>
