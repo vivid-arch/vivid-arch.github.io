@@ -284,19 +284,21 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Jobs</h1>
 
-<p>Jobs are where most of the magic happens. They are responsible for doing a certain task and they are reusable throughout the application.</p>
+<p>Jobs are where most of the magic happens. They are responsible for doing a certain task, and they are reusable throughout the application.</p>
 
-<p>Jobs should only be doing one and only thing. For example, a <code>FetchActiveUsersJob</code> should do what it's name implies. 
+<p>Jobs should only be doing one and only thing. For example, a <code>FetchActiveUsersJob</code> should do exactly what the name implies. 
 Similarly, the Feature should be broken down to individual jobs. 
-If you were to have a <code>SavePostFeature</code> you should think what smaller steps need to be taken in order to accomplish that task.</p>
+If you were to have a <code>SavePostFeature</code> you should think what smaller steps need to take place in order to accomplish that task.</p>
 
-<p>Unlike Features, Jobs are not Device-spicifc and they reside inside the <code>/app/Domains/&lt;domain&gt;/Jobs</code> directory. 
-One important characteristic of the Jobs is that they are completely isolated and they should only ever talk to the core application or other external services. 
+<p>Unlike Features, Jobs are not Device-specific, and they reside inside the <code>/app/Domains/&lt;domain&gt;/Jobs</code> directory. 
+One important characteristic of the Jobs is that they are completely isolated, and they should only ever talk to the core application or other external services. 
 Most importantly, Jobs should never talk to other jobs.</p>
 
 <h2>Generating a Job</h2>
 
 <p><strong>Basic use</strong></p>
+
+<p>To generate a Job, use the following command:</p>
 
 <pre><code class="language-sh">./vendor/bin/vivid make:job &lt;job&gt; &lt;domain&gt;
 </code></pre>
@@ -334,13 +336,13 @@ class ExampleJob extends Job
 
 </code></pre>
 
-<p>By default, the Job will contain 2 functions, the <code>construct</code> and the <code>handle</code> function. You will use the constructor in order to
-accept parameters, and the handle function to place inside the main Job logic.</p>
+<p>By default, the Job will contain 2 methods, the <code>__construct</code> and the <code>handle</code>. You will use the constructor in order to
+accept parameters, and the handle method to place inside the main Job logic. 
+If you wish you may add your own methods to clean up the <code>handle</code> method.</p>
 
 <h2>Running Jobs</h2>
 
-<p>To run a job you will use the <code>$this-&gt;run()</code> method from within a Feature, which is made available by the <code>Vivid\Foundation\JobDispatcherTrait</code> which, in turn,
-is implemented by the <code>Vivid\Foundation\Feature</code> base class.</p>
+<p>To run a job you will use the <code>$this-&gt;run()</code> method from within a Feature, which is made available by the <code>Vivid\Foundation\JobDispatcherTrait</code>.</p>
 
 <p>Here is an example:</p>
 
@@ -357,11 +359,18 @@ class ExampleFeature extends Feature
 {
     public function handle(Request $request)
     {
-        $this-&gt;run(ExampleJob::class);
+        return $this-&gt;run(ExampleJob::class);
     }
 }
 
 </code></pre>
+
+<p>Some times you may wish you run a Job if a certain condition is met. Vivid provides 2 support methods which can help you with that.</p>
+
+<ul>
+<li><code>$this-&gt;runIf(boon $condition, string $job, array $args)</code></li>
+<li><code>$this-&gt;runUnless(boon $condition, string $job, array $args)</code></li>
+</ul>
 
 <h2>Passing Parameters</h2>
 
@@ -414,14 +423,40 @@ class ExampleJob extends Job
     }
 }
 
-
 </code></pre>
+
+<p>If you are running PHP8 you can use the Constructor Property Promotion in order to reduce the number of lines written. Given our
+previous example, it can be written as:</p>
+
+<pre><code class="language-php">class ExampleJob extends Job
+{
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct(private $param1, private $param2)
+    {}
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+        // use the parameters from within here
+    }
+}
+</code></pre>
+
+<p>You can read more about Constructor Property Promotion in the <a href="https://wiki.php.net/rfc/constructor_promotion">official RFP</a>.</p>
 
 <p>Please note that the order of the parameters does not matter here either. The key of the associative array however has to match the name of the parameter.</p>
 
 <h2>Returning data from Jobs</h2>
 
-<p>In most cases you need to return whatever the result of the Job is. The <code>run()</code> method will return whatever <code>handle()</code> returns.</p>
+<p>In most cases you need to return whatever the result of the Job is. The <code>run</code> method will return whatever <code>handle</code> returns.</p>
 
 <p>Here is an example:</p>
 
@@ -472,7 +507,7 @@ class ExampleJob extends Job
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center">
                 <li class="md:mr-2">
-                    &copy; <a href="#" title="Tighten website">Vivid</a> 2020.
+                    &copy; <a href="#" title="Tighten website">Vivid</a> 2021.
                 </li>
 
                 <li>

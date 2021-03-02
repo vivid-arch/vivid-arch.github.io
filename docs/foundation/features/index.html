@@ -286,7 +286,7 @@
 
 <p>As the name suggests, Features serve a specific purpose and only one Feature can be executed per request.</p>
 
-<p>Think of them as the intend of the request. For example a feature may be creating a post, authorizing a user, fetching a resource, etc...</p>
+<p>Think of them as the intent of the request. For example a feature may be creating a post, authorizing a user, fetching a resource, etc...</p>
 
 <p>Each Feature can only call Jobs and Operations and it should never communicate or invoke other Features.</p>
 
@@ -328,7 +328,7 @@ class ExampleFeature extends Feature
 <p>Now that you have created a Feature, how do you use it?</p>
 
 <p>As mentioned before, each Vivid Controller has access to the <code>Vivid\Foundation\ServesFeaturesTrait</code> which provides the <code>$this-&gt;serve()</code> method.
-This trait dispatches the execution of the Feature and it also registers the Feature class FQN to the <code>Vivid\Foundation\Instance</code> class.</p>
+This trait dispatches the execution of the Feature, and it also registers the Feature class FQN to the <code>Vivid\Foundation\Instance</code> class.</p>
 
 <p>Here is an example using the Device Controller that serves a feature:</p>
 
@@ -390,14 +390,14 @@ class RetrievesAllUsersFeature extends Feature
 </code></pre>
 
 <p>You will notice that the order of the arguments doesn't match the order by which we passed them in. 
-That's because Vivid doesn't care about the order of the arguments at all as long as the names are the same.</p>
+That's because Vivid does not care about the order of the arguments at all as long as the names are the same.</p>
 
 <h2>Example of using a Feature</h2>
 
 <p>Following the example that we introduced in the chapter about Devices, let see how we can determine which Features our application needs.</p>
 
-<p>The easiest to understand and most universal concept is the one of the support portal. Virtually all services have the same functionality 
-when it comes to handling support tickets. Also, that doesn't make our example too specific.</p>
+<p>The easiest to understand, and most universal concept is the one of the support portal. Virtually all services have the same functionality 
+when it comes to handling support tickets.</p>
 
 <p>So, lets write down what we expect when think about a support portal. Definitely we need to be able to <strong>create a new ticker</strong>, <strong>add media tou our ticker</strong>,
 <strong>add replies</strong>, <strong>mark it as closed</strong>, and from the admin panel wou should have the ability to <strong>assign the ticker</strong>, <strong>escalate it</strong>, <strong>updated the status</strong>.</p>
@@ -448,7 +448,7 @@ when it comes to handling support tickets. Also, that doesn't make our example t
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center">
                 <li class="md:mr-2">
-                    &copy; <a href="#" title="Tighten website">Vivid</a> 2020.
+                    &copy; <a href="#" title="Tighten website">Vivid</a> 2021.
                 </li>
 
                 <li>

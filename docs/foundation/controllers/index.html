@@ -284,7 +284,7 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Controllers</h1>
 
-<p>Controllers is what we all know and love. Sometimes they are nice and slick. Other times, they get slightly out hand and they increase in size.</p>
+<p>Controllers are what we all know and love. Sometimes they are nice and slick. Other times, they get slightly out hand and they increase in size.</p>
 
 <p>With Vivid, your controllers will only be a single line and that's it!</p>
 
@@ -296,22 +296,42 @@ for implementing the <code>ServesFeaturesTrait</code>.</p>
 
 <p>In order to generate a Controller using the Vivid Console, type the following command:</p>
 
-<pre><code class="language-sh">./vendor/bin/vivid make:controller &lt;controller&gt; &lt;device&gt; [&lt;resource&gt;, &lt;invokable&gt;]
+<pre><code class="language-sh">./vendor/bin/vivid make:controller &lt;controller&gt; &lt;device&gt; [&lt;--resource&gt;, &lt;--invokable&gt;]
 </code></pre>
 
 <p>There are three different types of controllers that you can create through the <code>make:controller</code> command.</p>
 
 <p>If you specify no options, a pain controller will be generated with no methods inside.</p>
 
-<p>You can append the <code>--resource</code> option to the <code>make</code> command and create a controller which will include the <code>index</code>, <code>create</code>, <code>store</code>, <code>show</code>, <code>edit</code>, <code>update</code>, <code>destroy</code> methods.</p>
+<p>You can append the <code>--resource</code> option to the <code>make:controller</code> command and create a controller which will include the <code>index</code>, <code>create</code>, <code>store</code>, <code>show</code>, <code>edit</code>, <code>update</code>, <code>destroy</code> methods.</p>
 
 <p>Lastly, you can use the <code>--invokable</code> option to generate a controller only with an <code>__invoke</code> method.</p>
+
+<h2>Dependency Injection</h2>
+
+<p>You might feel tempted to use dependency injection and pass a resource instance to the Feature but this is not the correct way to do it.</p>
+
+<p>While you have to add the models as a parameter in the controller method, they will be automatically accessible by the request object.</p>
+
+<p>For example, this is considered a bad practise:</p>
+
+<pre><code class="language-php">[...]
+
+public function update(User $user) {
+    return $this-&gt;serve(UpdateUserFeature::class, ['user' =&gt; $user]);
+}
+
+[...]
+</code></pre>
+
+<p>The recommended way is to not pass the array inside <code>serve</code> at all, but keep it in the method definition. From within the Feature,
+you can access the injected object using the Request object.</p>
 
 <hr />
 
 <p>It is up to you to decide how your controller structure will be. When you aren't sure, we recommend watching the <a href="https://www.youtube.com/watch?v=MF0jFKvS4SI">"Cruddy by Design"</a>
 talk by <a href="https://adamwathan.me/">Adam Wathan</a>. In summary, it is a good idea to avoid using any word for the name of a controller other than the 
-standard CRUD names. But this is up to you. Vivid will not force any coding standard upon you.</p>
+standard CRUD names. However, this is up to you. Vivid will not force any coding standard upon you.</p>
         </div>
     </div>
 </section>
@@ -344,7 +364,7 @@ standard CRUD names. But this is up to you. Vivid will not force any coding stan
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center">
                 <li class="md:mr-2">
-                    &copy; <a href="#" title="Tighten website">Vivid</a> 2020.
+                    &copy; <a href="#" title="Tighten website">Vivid</a> 2021.
                 </li>
 
                 <li>

@@ -284,7 +284,7 @@
         <div class="w-full lg:w-3/5 break-words pb-16 lg:pl-4" v-pre>
             <h1>Logging</h1>
 
-<p>Vivid Jobs can write to logs by using the <code>$this-log()</code> method.</p>
+<p>Vivid Jobs can write to log by using the <code>$this-&gt;log()</code> method from anywhere within a Job.</p>
 
 <p>Under the hood Vivid uses the <code>Log</code> facade and prepends the output with the Job FQN
 but there are future plans to make the logging more powerful by allowing developers to
@@ -336,7 +336,7 @@ use different logging channels.</p>
         <footer class="bg-white text-center text-sm mt-12 py-4" role="contentinfo">
             <ul class="flex flex-col md:flex-row justify-center">
                 <li class="md:mr-2">
-                    &copy; <a href="#" title="Tighten website">Vivid</a> 2020.
+                    &copy; <a href="#" title="Tighten website">Vivid</a> 2021.
                 </li>
 
                 <li>
