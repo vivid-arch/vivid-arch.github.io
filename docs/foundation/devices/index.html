@@ -6,18 +6,18 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="Vivid Devices">
 
-        <meta property="og:site_name" content="Laravel Vivid Architecture"/>
-        <meta property="og:title" content="Devices | Laravel Vivid Architecture"/>
+        <meta property="og:site_name" content="Laravel Vivid"/>
+        <meta property="og:title" content="Devices | Laravel Vivid"/>
         <meta property="og:description" content="Vivid Devices"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs\foundation/devices"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/devices"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
-        <meta name="twitter:image:alt" content="Laravel Vivid Architecture">
+        <meta name="twitter:image:alt" content="Laravel Vivid">
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid Architecture | Devices</title>
+        <title>Laravel Vivid | Devices</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -34,10 +34,10 @@
         <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
             <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
                 <div class="flex items-center">
-                    <a href="/" title="Laravel Vivid Architecture home" class="inline-flex items-center">
-                        <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="Laravel Vivid Architecture logo" />
+                    <a href="/" title="Laravel Vivid home" class="inline-flex items-center">
+                        <img class="h-8 md:h-10 mr-3" src="/assets/images/Vivid-01.png" alt="Laravel Vivid logo" />
 
-                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Laravel Vivid Architecture</h1>
+                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Laravel Vivid</h1>
                     </a>
                 </div>
 
@@ -71,7 +71,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/getting-started"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+            class="lvl0 lvl0-active  nav-menu__item hover:text-blue-500"
         >
             Foundation
         </a>
@@ -90,7 +90,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/devices"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Devices
         </a>
@@ -200,40 +200,10 @@
         <ul class="my-0">
             <li class="pl-4">
             
-        <a href="/docs/console/installation"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Installation
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
         <a href="/docs/console/commands"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Commands
-        </a>
-    
-    </li>
-    </ul>
-    </li>
-            <li class="pl-4">
-            
-        <a href="/docs/dashboard/getting-started"
-            class="lvl0   nav-menu__item hover:text-blue-500"
-        >
-            Dashboard
-        </a>
-    
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/docs/dashboard/installation"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Installation
         </a>
     
     </li>
@@ -247,18 +217,6 @@
             Ignition Tab
         </a>
     
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/docs/ignition/installation"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Installation
-        </a>
-    
-    </li>
-    </ul>
     </li>
             <li class="pl-4">
             
@@ -291,7 +249,7 @@ Each one of them is responsible for providing an interface with our application.
 
 <p>Each Device <strong>must</strong> be independent of the others, and it should be able to function on its own without the existence of the other devices.</p>
 
-<p>It is of curse acceptable for Devices to use any component from our application that is located outside of the <code>/Devices</code> directory.</p>
+<p>It is of curse acceptable for Devices to use any component from our application that is located outside the <code>/Devices</code> directory.</p>
 
 <h3>Generating a Device</h3>
 
@@ -300,7 +258,7 @@ Each one of them is responsible for providing an interface with our application.
 <pre><code class="language-sh">./vendor/bin/vivid make:device ExampleDevice
 </code></pre>
 
-<p>Some times, you may want to omit the creation of the resource folders inside <code>/resources/devices</code>. You may do that by appending the <code>--no-assets</code> option at the end of the command.</p>
+<p>Sometimes, you may want to omit the creation of the resource folders inside <code>/resources/devices</code>. You may do that by appending the <code>--no-assets</code> option at the end of the command.</p>
 
 <h3>Registering a Device</h3>
 
@@ -320,7 +278,7 @@ Each one of them is responsible for providing an interface with our application.
 ]
 </code></pre>
 
-<p>TIP: You can also use environment variables to control when the devices will be loaded. For example you can disable certain devices on production!</p>
+<p>TIP: You can also use environment variables to control when the devices will be loaded. For example, you can disable certain devices on production.</p>
 
 <h3>Directory Structure</h3>
 
@@ -340,35 +298,15 @@ Each one of them is responsible for providing an interface with our application.
 
 <p>Each Device gets it's own set our routes. When generating a Device, the routes will be registered automatically by the <code>RouteServiceProvider</code> located at <code>/app/Devices/&lt;device name&gt;/Providers/RouteServiceProvider</code>.</p>
 
-<p>By default, you will have a <code>web.php</code> and an <code>api.php</code> file which you will use accordingly. The routes inside these will be prefixed with <code>/api/&lt;device&gt;/</code> and <code>/web/&lt;device&gt;/</code> respectively.</p>
-
-<p>Here is a preview of the <code>RouteServiceProvider</code>:</p>
-
-<pre><code class="language-php">class RouteServiceProvider extends ServiceProvider
-{
-    /**
-     * Read the routes from the "api.php" and "web.php" files of this device
-     *
-     * @param \Illuminate\Routing\Router $router
-     */
-    public function map(Router $router)
-    {
-        $namespace = 'App\Devices\ExampleDevice\Http\Controllers';
-        $pathApi = __DIR__.'/../routes/api.php';
-        $pathWeb = __DIR__.'/../routes/web.php';
-
-        $this-&gt;loadRoutesFiles($router, $namespace, $pathApi, $pathWeb);
-    }
-}
-</code></pre>
+<p>By default, you will have a <code>web.php</code> and an <code>api.php</code> file which you will use accordingly. The routes inside these will be prefixed with <code>/api/&lt;device&gt;/</code> and <code>/&lt;device&gt;/</code> respectively.</p>
 
 <h3>Example of using Devices</h3>
 
-<p>Lets consider the following scenario:</p>
+<p>Let's consider the following scenario:</p>
 
 <blockquote>
   <p>You are building a SaaS app which has the following features: a homepage with all the marketing material, 
-  a blog to keep your clients updates, a client area which is where your clients are doing all the work, 
+  a blog to keep your clients updated, a client area which is where your clients are doing all the work, 
   and an admin panel which you will use to manage the website.</p>
 </blockquote>
 
@@ -387,7 +325,7 @@ simply by taking a look at your application's different business segments.</p>
 <p>These segments can be easily converted to different devices and that would be a correct thing to do, but in most cases we need to look
 deeper to see if we end up creating super-devices which are still containing too much code which could be broken ever further.</p>
 
-<p>To give a clear illustration of what we mean by that, lets assume the the client are has a support portal. Indeed, it is contained 
+<p>To give a clear illustration of what we mean by that, lets assume that the client are has a support portal. Indeed, it is contained 
 inside the client area but doesn't it look like a business segment of it's own? Well, yes, and we can think of it as an independent entity.</p>
 
 <p>By closely examining our application, or what we need to build, we can identify it's different business segments and use them to create
@@ -398,7 +336,7 @@ our set of devices that we are going to use.</p>
 <p>So, lets recap! 
 We found the logical areas that we can use to derive the devices that we are going to need in order to build the application.</p>
 
-<p>The next step if to generate these devices and we will start implementing them as we go along.</p>
+<p>The next step if to generate these devices, and we will start implementing them as we go along.</p>
         </div>
     </div>
 </section>

@@ -6,18 +6,18 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <meta name="description" content="Vivid Controllers">
 
-        <meta property="og:site_name" content="Laravel Vivid Architecture"/>
-        <meta property="og:title" content="Controllers | Laravel Vivid Architecture"/>
+        <meta property="og:site_name" content="Laravel Vivid"/>
+        <meta property="og:title" content="Controllers | Laravel Vivid"/>
         <meta property="og:description" content="Vivid Controllers"/>
-        <meta property="og:url" content="https://vivid-arch.github.io/docs\foundation/controllers"/>
+        <meta property="og:url" content="https://vivid-arch.github.io/docs/foundation/controllers"/>
         <meta property="og:image" content="/assets/img/logo.png"/>
         <meta property="og:type" content="website"/>
 
-        <meta name="twitter:image:alt" content="Laravel Vivid Architecture">
+        <meta name="twitter:image:alt" content="Laravel Vivid">
         <meta name="twitter:card" content="summary_large_image">
 
         
-        <title>Laravel Vivid Architecture | Controllers</title>
+        <title>Laravel Vivid | Controllers</title>
 
         <link rel="home" href="https://vivid-arch.github.io/">
         <link rel="icon" href="/favicon.ico">
@@ -34,10 +34,10 @@
         <header class="flex items-center shadow bg-white border-b h-24 mb-8 py-4" role="banner">
             <div class="container flex items-center max-w-8xl mx-auto px-4 lg:px-8">
                 <div class="flex items-center">
-                    <a href="/" title="Laravel Vivid Architecture home" class="inline-flex items-center">
-                        <img class="h-8 md:h-10 mr-3" src="/assets/img/logo.svg" alt="Laravel Vivid Architecture logo" />
+                    <a href="/" title="Laravel Vivid home" class="inline-flex items-center">
+                        <img class="h-8 md:h-10 mr-3" src="/assets/images/Vivid-01.png" alt="Laravel Vivid logo" />
 
-                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Laravel Vivid Architecture</h1>
+                        <h1 class="text-lg md:text-2xl text-blue-900 font-semibold hover:text-blue-600 my-0 pr-4">Laravel Vivid</h1>
                     </a>
                 </div>
 
@@ -71,7 +71,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/getting-started"
-            class="lvl0   nav-menu__item hover:text-blue-500"
+            class="lvl0 lvl0-active  nav-menu__item hover:text-blue-500"
         >
             Foundation
         </a>
@@ -99,7 +99,7 @@
             <li class="pl-4">
             
         <a href="/docs/foundation/controllers"
-            class="lvl1   nav-menu__item hover:text-blue-500"
+            class="lvl1  active font-semibold text-blue-500 nav-menu__item hover:text-blue-500"
         >
             Controllers
         </a>
@@ -200,40 +200,10 @@
         <ul class="my-0">
             <li class="pl-4">
             
-        <a href="/docs/console/installation"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Installation
-        </a>
-    
-    </li>
-            <li class="pl-4">
-            
         <a href="/docs/console/commands"
             class="lvl1   nav-menu__item hover:text-blue-500"
         >
             Commands
-        </a>
-    
-    </li>
-    </ul>
-    </li>
-            <li class="pl-4">
-            
-        <a href="/docs/dashboard/getting-started"
-            class="lvl0   nav-menu__item hover:text-blue-500"
-        >
-            Dashboard
-        </a>
-    
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/docs/dashboard/installation"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Installation
         </a>
     
     </li>
@@ -247,18 +217,6 @@
             Ignition Tab
         </a>
     
-            
-        <ul class="my-0">
-            <li class="pl-4">
-            
-        <a href="/docs/ignition/installation"
-            class="lvl1   nav-menu__item hover:text-blue-500"
-        >
-            Installation
-        </a>
-    
-    </li>
-    </ul>
     </li>
             <li class="pl-4">
             
@@ -311,9 +269,9 @@ for implementing the <code>ServesFeaturesTrait</code>.</p>
 
 <p>You might feel tempted to use dependency injection and pass a resource instance to the Feature but this is not the correct way to do it.</p>
 
-<p>While you have to add the models as a parameter in the controller method, they will be automatically accessible by the request object.</p>
+<p>While you have to add the models as a parameter in the controller method, they will be accessible, automatically, by the request object.</p>
 
-<p>For example, this is considered a bad practise:</p>
+<p>For example, this is not required:</p>
 
 <pre><code class="language-php">[...]
 
@@ -324,7 +282,7 @@ public function update(User $user) {
 [...]
 </code></pre>
 
-<p>The recommended way is to not pass the array inside <code>serve</code> at all, but keep it in the method definition. From within the Feature,
+<p>A better way would be to not pass the array inside <code>serve()</code> at all, but keep it in the method definition. From within the Feature,
 you can access the injected object using the Request object.</p>
 
 <hr />
