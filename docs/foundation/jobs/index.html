@@ -435,6 +435,27 @@ previous example, it can be written as:</p>
     return $data;
 }
 </code></pre>
+
+<h2>Cacheable Jobs</h2>
+
+<p>It is also possible to implement automatic caching for Job. Basically, the Vivid job dispatcher
+will take the result of the Job and add it to the default caching driver.</p>
+
+<p>To make a Job cacheable, you need to implement the following interface: <code>Vivid\Foundation\Contracts\Cacheable</code>.</p>
+
+<p>This interface is responsible for requesting 2 essential pieces of information: What the key is &amp; how long to cache.</p>
+
+<pre><code class="language-php">public function getCacheKey(): string;
+
+public function getCacheExpiration(): int;
+</code></pre>
+
+<p>For convenience, Vivid includes a trait out of the box which can use a set of default values 
+in order to provide a definition for the <code>getCacheKey</code> and <code>getCacheExpiration</code> methods.
+Simply use the <code>Vivid\Foundation\Contracts\Cacheable</code> trait.</p>
+
+<p>The <code>getCacheKey</code> method will return the class FQN of the Job and the <code>getCacheExpiration</code> will
+return the value of <code>default_cache_duration</code> which is located in <code>config/vivid.php</code>.</p>
         </div>
     </div>
 </section>
